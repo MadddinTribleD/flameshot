@@ -18,6 +18,12 @@ build_script:
 
     cmake --build . --config "Release"
 
+    cd src
+
+    7z a flameshot.zip Release
+
 artifacts:
+    - path: build\src\flameshot.zip
+      name: portable
     - path: build\src\Release\flameshot.exe
       name: exe_only
