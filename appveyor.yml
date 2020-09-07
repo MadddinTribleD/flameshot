@@ -36,7 +36,9 @@ build_script:
 
     echo %APPVEYOR_REPO_COMMIT% >> "distrib\flameshot\version.txt"
 
-    copy "translations\Internationalization_*.qm" "distrib\flameshot\translations"
+    dir build
+
+    copy "build\translations\Internationalization_*.qm" "distrib\flameshot\translations"
 
     cd distrib
     
