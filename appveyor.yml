@@ -22,7 +22,7 @@ build_script:
 
     mkdir distrib\flameshot
 
-    windeployqt.exe --dir .\distrib\flameshot .\build\Release\flameshot.exe
+    windeployqt.exe --dir .\distrib\flameshot %APPVEYOR_BUILD_FOLDER%\build\Release\flameshot.exe
 
     copy "build\Release\flameshot.exe" "distrib\flameshot\flameshot.exe"
 
