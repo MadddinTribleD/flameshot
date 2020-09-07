@@ -18,9 +18,29 @@ build_script:
 
     cmake --build . --config "Release"
 
-    cd src
+    cd ..
 
-    7z a flameshot.zip Release
+    mkdir distrib\flameshot
+
+    windeployqt.exe --dir .\distrib\flameshot .\build\Release\flameshot.exe
+
+    copy "build\Release\flameshot.exe" "distrib\flameshot\flameshot.exe"
+
+    copy "build\README.md" "distrib\flameshot\README.md"
+
+    copy "build\LICENSE" "distrib\flameshot\LICENSE.txt"
+
+    echo %flameshot_version% > "distrib\flameshot\version.txt"
+
+    echo Build:%build_number% >> "distrib\flameshot\version.txt"
+
+    echo %APPVEYOR_REPO_COMMIT% >> "distrib\flameshot\version.txt"
+
+    copy "build\translations\Internationalization_*.qm" "distrib\flameshot\translations"
+
+    cd distrib
+    
+    7z a flameshot.zip flameshot
 
 artifacts:
     - path: build\src\flameshot.zip
